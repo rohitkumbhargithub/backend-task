@@ -3,6 +3,8 @@ import requests
 
 app = Flask(__name__)
 
+# Home page
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -59,7 +61,7 @@ def pie_chart():
     return render_template('pie_chart.html', data=data)
 
 
-#implement pie chart
+#implement pie search chart
 @app.route('/search', methods = ['GET', 'POST'])
 def search_pie_chart():
     # Fetch data from the API
@@ -77,7 +79,8 @@ def search_pie_chart():
     return render_template('pie_chart.html', data=data)
 
 
-@app.route('/stastatics')
+# implemented stastatics Api
+@app.route('/statistics')
 def static_chart():
     # Fetch data from the API
     api_url = 'http://localhost:5000/statistics?month=1'
@@ -86,11 +89,11 @@ def static_chart():
     print(response.url)
     data = response.json()
 
-    return render_template('stastatics.html', data=data)
+    return render_template('statistics.html', data=data)
 
 
-
-@app.route('/search_static', methods = ['GET', 'POST'])
+# 
+@app.route('/search_statistics', methods = ['GET', 'POST'])
 def search_static_chart():
     # Fetch data from the API
     if request.method == 'POST':
@@ -104,7 +107,7 @@ def search_static_chart():
     print(response.url)
     data = response.json()
 
-    return render_template('stastatics.html', data=data)
+    return render_template('statistics.html', data=data)
 
 
 if __name__ == '__main__':
