@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Products- Price range and the number of items</h1>
+
+    <form action="/search_bar" method="post">
+        <label for="user_input">Select Month:</label><br>
+        <select name="user_input">
+            <option value="1">Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+            <option value="4">Apr</option> 
+            <option value="5">May</option> 
+            <option value="6">Jun</option> 
+            <option value="7">Jul</option> 
+            <option value="8">Aug</option> 
+            <option value="9">Sept</option> 
+            <option value="10">Oct</option> 
+            <option value="11">Nov</option> 
+            <option value="12">Dec</option>
+
+        </select>
+        <input type="submit" value="Search">
+    </form>
+
+    <button><a href="/">Back</a></button>
+
+    <div id="bar-chart"></div>
+    <script>
+        var categories = {{ categories|tojson }};
+        var item_counts = {{ item_counts|tojson }};
+
+        var trace = {
+            x: categories,
+            y: item_counts,
+            type: 'bar'
+        };
+
+        var layout = {
+            title: 'Price range and the number of items in that range',
+            xaxis: {
+                title: 'Price Range'
+            },
+            yaxis: {
+                title: 'Item Count'
+            }
+        };
+
+        Plotly.newPlot('bar-chart', [trace], layout);
+    </script>
+</body>
+</html>

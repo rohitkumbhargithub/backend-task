@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Example</title>
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    
+    <script>
+        // Parse the chart JSON data
+        var chart_data = {{ chart_json | safe }};
+        
+        // Render the chart using Plotly.js
+        Plotly.newPlot('chart', chart_data.data, chart_data.layout);
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <button><a href="/bar-chart">Price Bar Chart</a></button>
+    <button><a href="/pie-chart">Categories Pie Chart</a></button>
+    <button><a href="/stastatics">Total Products</a></button>
+</body>
+</html>
