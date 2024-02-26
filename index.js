@@ -6,7 +6,7 @@ const app = express();
 const PORT = 5000;
 
 
-// implement MySql phpmyadmin database connection
+// implemented MySql phpmyadmin database connection
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -45,7 +45,7 @@ app.post('/send-data', async (req, res) => {
 });
 
 
-// product sold month 
+// product sold month (spcify month in number (1-12))
 app.get('/product-sold', (req, res) => {
     const { month } = req.query;
 
@@ -69,6 +69,8 @@ app.get('/transactions', (req, res) => {
   
     let whereClause = '';
     let searchParams = [];
+
+    // title/description/price and based on matching result
     if (search) {
       whereClause = 'WHERE title LIKE ? OR description LIKE ? OR price LIKE ?';
       searchParams = [`%${search}%`, `%${search}%`, `%${search}%`];
@@ -101,7 +103,7 @@ app.get('/transactions', (req, res) => {
   });
 
 
-// Statistics Api
+// Statistics Api totalSaleAmount, totalSoldItems and totalUnsoldItems
   app.get('/statistics', (req, res) => {
     const { month } = req.query;
 
@@ -136,7 +138,7 @@ app.get('/transactions', (req, res) => {
   });
 
 
-// bar chart for productd
+// bar chart for products contain price range and the number of items in that range for the selected month
   app.get('/bar-chart', (req, res) => {
   const {month} = req.query;
 
@@ -188,7 +190,7 @@ app.get('/transactions', (req, res) => {
 });
 
 
-// pie chart for category
+// pie chart for category, Find unique categories and number of items
 app.get('/category', (req, res) => {
   
   const {month} = req.query;
@@ -214,7 +216,7 @@ app.get('/category', (req, res) => {
   });
 });
 
-
+// port 
 app.listen(PORT, () =>{
     console.log("server is connected ", PORT);
 })
